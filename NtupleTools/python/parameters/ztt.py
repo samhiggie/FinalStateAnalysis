@@ -66,9 +66,10 @@ parameters = {
 
         # Rivet code provides the Simplifed Template Cross Section values
         Rivet_stage0_cat='evt.getRivetInfo().stage0_cat',
-        Rivet_stage1_cat_pTjet25GeV='evt.getRivetInfo().stage1_cat_pTjet25GeV',
-        Rivet_stage1_cat_pTjet30GeV='evt.getRivetInfo().stage1_cat_pTjet30GeV',
-        Rivet_stage1p1_cat='evt.getRivetInfo().stage1p1_cat',
+        Rivet_stage1_1_cat_pTjet25GeV='evt.getRivetInfo().stage1_1_cat_pTjet25GeV',
+        Rivet_stage1_1_cat_pTjet30GeV='evt.getRivetInfo().stage1_1_cat_pTjet30GeV',
+        Rivet_stage1_1_fine_cat_pTjet25GeV='evt.getRivetInfo().stage1_1_fine_cat_pTjet25GeV',
+        Rivet_stage1_1_fine_cat_pTjet30GeV='evt.getRivetInfo().stage1_1_fine_cat_pTjet30GeV',
         Rivet_errorCode='evt.getRivetInfo().errorCode',
         Rivet_prodMode='evt.getRivetInfo().prodMode',
         Rivet_higgsPt='evt.getRivetInfo().higgs.pt()',
@@ -455,6 +456,20 @@ parameters = {
         objectRerunMVArun2v2DBoldDMwLTTight = '? {object}.hasUserFloat("byIsolationMVArun2v2DBoldDMwLTTightRerun") ? {object}.userFloat("byIsolationMVArun2v2DBoldDMwLTTightRerun") : -10',
         objectRerunMVArun2v2DBoldDMwLTVTight = '? {object}.hasUserFloat("byIsolationMVArun2v2DBoldDMwLTVTightRerun") ? {object}.userFloat("byIsolationMVArun2v2DBoldDMwLTVTightRerun") : -10',
         objectRerunMVArun2v2DBoldDMwLTVVTight = '? {object}.hasUserFloat("byIsolationMVArun2v2DBoldDMwLTVVTightRerun") ? {object}.userFloat("byIsolationMVArun2v2DBoldDMwLTVVTightRerun") : -10',
+
+#NewDM
+      objectRerunMVArun2v2DBnewDMwLTraw = '? {object}.hasUserFloat("byIsolationMVArun2v2DBnewDMwLTrawRerun") ? {object}.userFloat("byIsolationMVArun2v2DBnewDMwLTrawRerun") : -10',
+              objectRerunMVArun2v2DBnewDMwLTVVLoose = '? {object}.hasUserFloat("byIsolationMVArun2v2DBnewDMwLTVVLooseRerun") ? {object}.userFloat("byIsolationMVArun2v2DBnewDMwLTVVLooseRerun") : -10',
+              objectRerunMVArun2v2DBnewDMwLTVLoose = '? {object}.hasUserFloat("byIsolationMVArun2v2DBnewDMwLTVLooseRerun") ? {object}.userFloat("byIsolationMVArun2v2DBnewDMwLTVLooseRerun") : -10',
+              objectRerunMVArun2v2DBnewDMwLTLoose = '? {object}.hasUserFloat("byIsolationMVArun2v2DBnewDMwLTLooseRerun") ? {object}.userFloat("byIsolationMVArun2v2DBnewDMwLTLooseRerun") : -10',
+              objectRerunMVArun2v2DBnewDMwLTMedium = '? {object}.hasUserFloat("byIsolationMVArun2v2DBnewDMwLTMediumRerun") ? {object}.userFloat("byIsolationMVArun2v2DBnewDMwLTMediumRerun") : -10',
+              objectRerunMVArun2v2DBnewDMwLTTight = '? {object}.hasUserFloat("byIsolationMVArun2v2DBnewDMwLTTightRerun") ? {object}.userFloat("byIsolationMVArun2v2DBnewDMwLTTightRerun") : -10',
+              objectRerunMVArun2v2DBnewDMwLTVTight = '? {object}.hasUserFloat("byIsolationMVArun2v2DBnewDMwLTVTightRerun") ? {object}.userFloat("byIsolationMVArun2v2DBnewDMwLTVTightRerun") : -10',
+      objectRerunMVArun2v2DBnewDMwLTVVTight = '? {object}.hasUserFloat("byIsolationMVArun2v2DBnewDMwLTVVTightRerun") ? {object}.userFloat("byIsolationMVArun2v2DBnewDMwLTVVTightRerun") : -10',
+
+
+
+
 
         #objectDpfTau2016v1VSallraw = '? {object}.hasUserFloat("byDpfTau2016v1VSallraw") ? {object}.userFloat("byDpfTau2016v1VSallraw") : -10',
         #objectTightDpfTau2016v1VSall = '? {object}.hasUserFloat("byTightDpfTau2016v1VSall") ? {object}.userFloat("byTightDpfTau2016v1VSall") : -10',

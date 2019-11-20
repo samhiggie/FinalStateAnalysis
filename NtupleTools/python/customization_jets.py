@@ -2,7 +2,7 @@
 import FWCore.ParameterSet.Config as cms
 import os
 
-def preJets(process, jSrc, vSrc, metSrc,mSrc, eSrc, **kwargs):
+def preJets(process, jSrc, jupSrc, jdownSrc, vSrc, metSrc,mSrc, eSrc, **kwargs):
     postfix = kwargs.pop('postfix','')
     jType = kwargs.pop('jType','AK4PFchs')
     doBTag = kwargs.pop('doBTag',False)
@@ -60,10 +60,10 @@ def preJets(process, jSrc, vSrc, metSrc,mSrc, eSrc, **kwargs):
         # recommended by HTT Twiki for 2017 data (6 Nov. 2018):
         # - https://twiki.cern.ch/twiki/bin/viewauth/CMS/HiggsToTauTauWorking2017#Jet/MET_uncertainty_treatment
         # - linked to: https://github.com/cms-jet/JECDatabase/blob/master/textFiles/Fall17_17Nov2017F_V32_DATA/Fall17_17Nov2017F_V32_DATA_UncertaintySources_AK4PFchs.txt
-        if runningLocal : fName = "../../NtupleTools/data/Autumn18_V16_MC_UncertaintySources_AK4PFchs.txt" 
+        if runningLocal : fName = "../../NtupleTools/data/Autumn18_V19_MC_UncertaintySources_AK4PFchs.txt" 
         else :
             cmsswversion=os.environ['CMSSW_VERSION']
-            fName = "{0}/src/FinalStateAnalysis/NtupleTools/data/Autumn18_V16_MC_UncertaintySources_AK4PFchs.txt".format(cmsswversion)
+            fName = "{0}/src/FinalStateAnalysis/NtupleTools/data/Autumn18_V19_MC_UncertaintySources_AK4PFchs.txt".format(cmsswversion)
 
         modName = 'miniAODJetFullSystematicsEmbedding{0}'.format(postfix)
         mod = cms.EDProducer(
@@ -112,11 +112,23 @@ def preJets(process, jSrc, vSrc, metSrc,mSrc, eSrc, **kwargs):
     )
     jSrc = modName
     setattr(process,modName,mod)
-
     pathName = 'jetSystematicsEmbedding{0}'.format(postfix)
     path = cms.Path(getattr(process,modName))
     setattr(process,pathName,path)
-  
+    process.schedule.append(getattr(process,pathName))
+
+    modName = 'miniAODJERSystematicsEmbedding{0}'.format(postfix)
+    mod = cms.EDProducer(
+        "MiniAODJERSystematicsEmbedder",
+        src = cms.InputTag(jSrc),
+        up = cms.InputTag(jupSrc),
+        down = cms.InputTag(jdownSrc)
+    )
+    jSrc = modName
+    setattr(process,modName,mod)
+    pathName = 'jerSystematicsEmbedding{0}'.format(postfix)
+    path = cms.Path(getattr(process,modName))
+    setattr(process,pathName,path)
     process.schedule.append(getattr(process,pathName))
 
     return jSrc
