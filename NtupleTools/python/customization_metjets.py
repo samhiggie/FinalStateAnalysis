@@ -2,7 +2,7 @@
 import FWCore.ParameterSet.Config as cms
 import os
 
-def preMETFromJES(process, jSrc, vSrc, metSrc,mSrc, eSrc, **kwargs):
+def preMETFromJES(process, jSrc, vSrc, metSrc, metUpSrc, metDownSrc, mSrc, eSrc, **kwargs):
     postfix = kwargs.pop('postfix','')
     jType = kwargs.pop('jType','AK4PFchs')
     runningLocal = kwargs.pop('runningLocal',False)
@@ -11,16 +11,18 @@ def preMETFromJES(process, jSrc, vSrc, metSrc,mSrc, eSrc, **kwargs):
         # Provide proper path name for Jet Uncertainty file
         # V10 is most recent version for JES Uncertainties
         # https://hypernews.cern.ch/HyperNews/CMS/get/jes/642/1/1.html
-        if runningLocal : fName = "../../NtupleTools/data/Autumn18_V16_MC_UncertaintySources_AK4PFchs.txt" # recommended by JetMET
+        if runningLocal : fName = "../../NtupleTools/data/Autumn18_V19_MC_UncertaintySources_AK4PFchs.txt" # recommended by JetMET
         else :
             cmsswversion=os.environ['CMSSW_VERSION']
-            fName = "{0}/src/FinalStateAnalysis/NtupleTools/data/Autumn18_V16_MC_UncertaintySources_AK4PFchs.txt".format(cmsswversion)
+            fName = "{0}/src/FinalStateAnalysis/NtupleTools/data/Autumn18_V19_MC_UncertaintySources_AK4PFchs.txt".format(cmsswversion)
 
         modName = 'miniAODMETJesSystematicsEmbedding{0}'.format(postfix)
         mod = cms.EDProducer(
 	    "MiniAODMETJesSystematicsEmbedder",
             src = cms.InputTag(jSrc),
             srcMET=cms.InputTag(metSrc),
+            upMET=cms.InputTag(metUpSrc),
+            downMET=cms.InputTag(metDownSrc),
             corrLabel = cms.string(jType),
             fName = cms.string(fName)
         )
